@@ -10,12 +10,12 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.costelloe_sean_examen_apilist.Navigation.MyNavigation
 import com.example.costelloe_sean_examen_apilist.Navigation.Routes
 import com.example.costelloe_sean_examen_apilist.ViewModel.NarutoViewModel
 
 @Composable
 fun MyScaffold(narutoVM: NarutoViewModel, navController: NavController) {
-
     Scaffold(
         bottomBar = {/*toDO*/}
     ) {paddingValues ->
@@ -31,14 +31,3 @@ fun MyScaffold(narutoVM: NarutoViewModel, navController: NavController) {
 }
 
 //toDO: aqui
-@Composable
-fun MyNavigation(narutoVM: NarutoViewModel, navController: NavController) {
-    NavHost(
-        navController = navController as NavHostController,
-        startDestination = Routes.ListScreen.routes
-    ) {
-        composable(Routes.ListScreen.routes) {
-            ListScreen(narutoVM, navController)
-        }
-    }
-}

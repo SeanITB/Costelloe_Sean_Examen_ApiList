@@ -27,11 +27,13 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.navigation.compose.rememberNavController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.costelloe_sean_examen_apilist.Moduls.Character
 import com.example.costelloe_sean_examen_apilist.ViewModel.NarutoViewModel
 import com.example.costelloe_sean_examen_apilist.Views.ListScreen
+import com.example.costelloe_sean_examen_apilist.Views.MyScaffold
 import com.example.costelloe_sean_examen_apilist.ui.theme.Costelloe_Sean_Examen_ApiListTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,7 +47,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val narutoVM by viewModels<NarutoViewModel>()
-                    ListScreen(narutoVM)
+                    val navigationController = rememberNavController()
+                    MyScaffold(narutoVM, navigationController)
                 }
             }
         }

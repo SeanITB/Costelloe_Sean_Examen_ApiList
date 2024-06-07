@@ -2,6 +2,7 @@ package com.example.costelloe_sean_examen_apilist.Views
 
 import android.util.Log
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,6 +22,7 @@ import androidx.navigation.NavController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.costelloe_sean_examen_apilist.Moduls.Character
+import com.example.costelloe_sean_examen_apilist.Navigation.Routes
 import com.example.costelloe_sean_examen_apilist.ViewModel.NarutoViewModel
 
 @Composable
@@ -33,7 +35,11 @@ fun ListScreen(narutoVM: NarutoViewModel, navController: NavController, modifier
         Log.i("RETOFIT", "RETOFIT values: " + characters)
         LazyColumn() {
             items(characters!!.characters) {
-                NarutoItem(it)
+                NarutoItem(it, Modifier
+                    .fillMaxWidth()
+                    .clickable {
+                        narutoVM.changeActualCharacter(it)
+                        navController.navigate(Routes.DetailScreen.routes) })
             }
 
         }
@@ -42,10 +48,10 @@ fun ListScreen(narutoVM: NarutoViewModel, navController: NavController, modifier
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun NarutoItem(character: Character) {
+fun NarutoItem(character: Character, modifier: Modifier) {
     Card(
         border = BorderStroke(2.dp, Color.LightGray),
-        modifier = Modifier.fillMaxWidth()
+        modifier = modifier
     ) {
         Row {
             GlideImage(

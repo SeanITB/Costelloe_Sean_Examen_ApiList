@@ -18,6 +18,9 @@ class NarutoViewModel: ViewModel() {
     private val _characters = MutableLiveData<Data?>(null)
     val characters = _characters
 
+    private val _character = MutableLiveData<Character?>(null)
+    val character = _character
+
     private val _isLoading = MutableLiveData(true)
     val isLoading = _isLoading
 
@@ -34,6 +37,11 @@ class NarutoViewModel: ViewModel() {
                 }
             }
         }
+    }
+
+
+    fun changeActualCharacter(character: Character) {
+        this._character.value = character
     }
 
 }
